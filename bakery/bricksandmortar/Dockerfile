@@ -22,6 +22,8 @@ WORKDIR /home/app
 COPY middleman /home/app
 
 
+#cache buster
+ENV cachebust-1434316717
 ARG COUNTER_ADDRESS
 ARG COUNTER_PORT
 ENV COUNTER_ADDRESS ${COUNTER_ADDRESS}
