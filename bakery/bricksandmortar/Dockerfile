@@ -26,7 +26,6 @@ ARG COUNTER_PORT
 ENV COUNTER_ADDRESS ${COUNTER_ADDRESS}
 ENV COUNTER_PORT ${COUNTER_PORT}
 
-RUN env
 
 #start middleman as development server
 RUN bundle exec middleman build --verbose

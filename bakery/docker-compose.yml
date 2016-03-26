@@ -44,9 +44,12 @@ services:
       - mysql
       - mysql:mysql.cloud66.local
     environment:
-      - RACK_ENV=development
+      - RACK_ENV=production
       - MYSQL_USERNAME=root
       - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=backery_dev
+      - SECRET_KEY_BASE=232sd82934283098sd
+
     ports:
       - "8001:80"  
   counter:
@@ -61,9 +64,11 @@ services:
       - rabbitmq
       - rabbitmq:rabbitmq.cloud66.local
     environment:
-      - RACK_ENV=development
+      - RACK_ENV=production
       - MYSQL_USERNAME=root
       - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=backery_dev
+
     ports:
       - "8000:80"  
   spacecake:
