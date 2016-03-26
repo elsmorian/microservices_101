@@ -1,5 +1,5 @@
 angular.module('demo').factory('config', function() {
   return {
-    api: 'http://192.168.99.100:8000'
+    api: "http://<%= ENV['COUNTER_ADDRESS'] %>:<%= ENV['COUNTER_PORT'] %>"
   };
 });

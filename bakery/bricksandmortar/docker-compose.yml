@@ -9,6 +9,7 @@ services:
     ports:
       - "8002:80"  
     environment:
-      - COUNTER_ADDRESS=http://192.168.99.100:8000
+      - COUNTER_ADDRESS=192.168.99.100
+      - COUNTER_PORT=8000
    
  

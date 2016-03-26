@@ -25,9 +25,12 @@ services:
     ports:
       - "8002:80"  
     #for developement purposes
-    volumes:
-      - ${PWD}/bricksandmortar/middleman:/home/app
-   
+    #volumes:
+    #  - ${PWD}/bricksandmortar/middleman:/home/app
+    environment:
+      - COUNTER_ADDRESS=192.168.99.100
+      - COUNTER_PORT=8000
+  
   accountant:
     build: ./accountant
     stdin_open: true
@@ -37,7 +40,7 @@ services:
       - mysql:mysql.cloud66.local
     environment:
       - RACK_ENV=development
-      - MYSQL_USER=root
+      - MYSQL_USERNAME=root
       - MYSQL_PASSWORD=root
     ports:
       - "8001:80"  
@@ -54,7 +57,7 @@ services:
       - rabbitmq:rabbitmq.cloud66.local
     environment:
       - RACK_ENV=development
-      - MYSQL_USER=root
+      - MYSQL_USERNAME=root
       - MYSQL_PASSWORD=root
     ports:
       - "8000:80"  

@@ -11,7 +11,7 @@ services:
       - ${PWD}:/home/app
     environment:
       - RACK_ENV=development
-      - MYSQL_USER=root
+      - MYSQL_USERNAME=root
       - MYSQL_PASSWORD=root
     ports:
       - "8000:80"  

@@ -21,6 +21,8 @@ ADD nginx/nginx.conf /etc/nginx/nginx.conf
 WORKDIR /home/app
 COPY middleman /home/app
 
+ENV COUNTER_ADDRESS $WEB_ADDRESS
+ENV COUNTER_PORT 80
 
 #start middleman as development server
 RUN bundle exec middleman build --verbose
