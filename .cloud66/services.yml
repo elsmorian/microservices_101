@@ -20,6 +20,17 @@ services:
     - 80:80:443
     traffic_matches:
     - accountant.[ip_cloud66].xip.io
+  counter:
+    env_vars:
+      RAILS_ENV: production
+    git_url: http://github.com/cloud66-samples/microservices_101.git
+    build_root: bakery/counter
+    git_branch: master
+    ports:
+    - 80:80:443
+    traffic_matches:
+    - counter.[ip_cloud66].xip.io
+
 databases:
 - mysql
 - rabbitmq
