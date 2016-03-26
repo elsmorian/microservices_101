@@ -1,0 +1,14 @@
+version: '2'
+services:
+  bricksandmortar:
+    build: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - ${PWD}/middleman:/home/app
+    ports:
+      - "8002:80"  
+    environment:
+      - COUNTER_ADDRESS=http://192.168.99.100:8000
+   
+ 

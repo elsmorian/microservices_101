@@ -1,0 +1,84 @@
+version: '2'
+services:
+  picker:
+    build: ./picker
+    stdin_open: true
+    tty: true
+    links:
+      - rabbitmq
+      - rabbitmq:rabbitmq.cloud66.local
+      - counter
+      - counter:counter.cloud66.local
+
+  chef:
+    build: ./chef
+    stdin_open: true
+    tty: true
+    links:
+      - rabbitmq
+      - rabbitmq:rabbitmq.cloud66.local
+
+  bricksandmortar:
+    build: ./bricksandmortar
+    stdin_open: true
+    tty: true
+    ports:
+      - "8002:80"  
+    #for developement purposes
+    volumes:
+      - ${PWD}/bricksandmortar/middleman:/home/app
+   
+  accountant:
+    build: ./accountant
+    stdin_open: true
+    tty: true
+    links:
+      - mysql
+      - mysql:mysql.cloud66.local
+    environment:
+      - RACK_ENV=development
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    ports:
+      - "8001:80"  
+  counter:
+    build: ./counter
+    stdin_open: true
+    tty: true
+    volumes:
+      - ${PWD}/counter:/home/app
+    links:
+      - mysql
+      - mysql:mysql.cloud66.local
+      - rabbitmq
+      - rabbitmq:rabbitmq.cloud66.local
+    environment:
+      - RACK_ENV=development
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    ports:
+      - "8000:80"  
+  spacecake:
+    build: ./minions/spacecake
+    stdin_open: true
+    tty: true
+    links:
+      - rabbitmq
+      - rabbitmq:rabbitmq.cloud66.local
+  bagel:
+    build: ./minions/bagel
+    stdin_open: true
+    tty: true
+    links:
+      - rabbitmq
+      - rabbitmq:rabbitmq.cloud66.local
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "8080:15672"
+  mysql:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
