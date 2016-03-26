@@ -16,6 +16,7 @@ RUN bundle install
 RUN mkdir /home/app
 WORKDIR /home/app
 COPY . /home/app
+RUN bundle exec rake assets:precompile
 
 #start the accountant
 CMD /home/app/start_accountant.sh
