@@ -1,0 +1,25 @@
+---
+services:
+  bricksandmortar:
+    git_url: http://github.com/cloud66-samples/microservices_101.git
+    build_root: bakery/bricksandmortar
+    git_branch: master
+    ports:
+    - 80:80:443
+    traffic_matches:
+    - www.[ip_cloud66].xip.io
+    - "*.[ip_cloud66].xip.io"
+  accountant:
+    env_vars:
+      RAILS_ENV: production
+    deploy_command: bundle exec rake db:migrate
+    git_url: http://github.com/cloud66-samples/microservices_101.git
+    build_root: bakery/accountant
+    git_branch: master
+    ports:
+    - 80:80:443
+    traffic_matches:
+    - accountant.[ip_cloud66].xip.io
+databases:
+- mysql
+- rabbitmq
