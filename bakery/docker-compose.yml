@@ -20,22 +20,15 @@ services:
 
   bricksandmortar:
     build: 
+      dockerfile: Dockerfile.development
       context: ./bricksandmortar
-      args:
-        - COUNTER_ADDRESS=192.168.99.100
-        - COUNTER_PORT=8000
-        
     stdin_open: true
     tty: true
     ports:
       - "8002:80"  
-    #for developement purposes
-    #volumes:
-    #  - ${PWD}/bricksandmortar/middleman:/home/app
-    environment:
-      - COUNTER_ADDRESS=192.168.99.100
-      - COUNTER_PORT=8000
-  
+  #  volumes:
+  #    - ${PWD}/bricksandmortar/middleman:/home/app
+
   accountant:
     build: ./accountant
     stdin_open: true

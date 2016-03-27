@@ -3,17 +3,12 @@ services:
   bricksandmortar:
     build: 
       context: .
-      args:
-        - COUNTER_ADDRESS=192.168.99.100
-        - COUNTER_PORT=8000
+      dockerfile: Dockerfile.development
     stdin_open: true
     tty: true
     volumes:
       - ${PWD}/middleman:/home/app
+      
     ports:
-      - "8002:80"  
-    environment:
-      - COUNTER_ADDRESS=192.168.99.100
-      - COUNTER_PORT=8000
-   
+      - "8002:80"
  
