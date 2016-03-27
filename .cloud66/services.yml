@@ -1,14 +1,18 @@
 ---
 services:
   bricksandmortar:
+    env_vars:
+      COUNTER_ADDRESS: _env(COUNTER_ADDRESS)
+      COUNTER_PORT: 80
     git_url: http://github.com/cloud66-samples/microservices_101.git
     build_root: bakery/bricksandmortar
     git_branch: master
     ports:
     - 80:80:443
     traffic_matches:
-    - www.[ip_cloud66].xip.io
-    - "*.[ip_cloud66].xip.io"
+    - www.46.101.41.135.xip.io
+    - "*.46.101.41.135.xip.io"
+
   accountant:
     env_vars:
       RAILS_ENV: production
@@ -19,17 +23,38 @@ services:
     ports:
     - 80:80:443
     traffic_matches:
-    - accountant.[ip_cloud66].xip.io
+    - accountant.46.101.41.135.xip.io
+
   counter:
     env_vars:
-      RAILS_ENV: production
+      RACK_ENV: production
     git_url: http://github.com/cloud66-samples/microservices_101.git
     build_root: bakery/counter
     git_branch: master
     ports:
     - 80:80:443
     traffic_matches:
-    - counter.[ip_cloud66].xip.io
+    - counter.46.101.41.135.xip.io
+
+  spacecake:
+    git_url: http://github.com/cloud66-samples/microservices_101.git
+    build_root: bakery/minions/spacecake
+    git_branch: master
+
+  bagel:
+    git_url: http://github.com/cloud66-samples/microservices_101.git
+    build_root: bakery/minions/bagel
+    git_branch: master
+
+  chef:
+    git_url: http://github.com/cloud66-samples/microservices_101.git
+    build_root: bakery/chef
+    git_branch: master
+
+  picker:
+    git_url: http://github.com/cloud66-samples/microservices_101.git
+    build_root: bakery/picker
+    git_branch: master
 
 databases:
 - mysql
