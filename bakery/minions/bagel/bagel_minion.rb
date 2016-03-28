@@ -13,7 +13,7 @@ work_queue = ch.queue("bakery.bagel.order", :durable => true)
 work_done_queue = ch.queue("bakery.sweet.done", :durable => true)
 
 ch.prefetch(1)
-sleep_time = 1.5
+sleep_time = 10
 
 logger = Logger.new(STDOUT)
 logger.formatter = proc do |severity, datetime, progname, msg|

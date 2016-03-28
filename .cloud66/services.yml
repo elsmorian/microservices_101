@@ -7,8 +7,7 @@ services:
     ports:
     - 80:80:443
     traffic_matches:
-    - www.46.101.41.135.xip.io
-    - "*.46.101.41.135.xip.io"
+    - www.microservice101.io
   cms_accountant:
     env_vars:
       RAILS_ENV: production
@@ -19,7 +18,7 @@ services:
     ports:
     - 80:80:443
     traffic_matches:
-    - accountant.46.101.41.135.xip.io
+    - cms.www.microservice101.io
   counter:
     env_vars:
       RACK_ENV: production
@@ -29,7 +28,7 @@ services:
     ports:
     - 80:80:443
     traffic_matches:
-    - counter.46.101.41.135.xip.io
+    - api.microservice101.io
   minion_spacecake:
     git_url: http://github.com/cloud66-samples/microservices_101.git
     build_root: bakery/minions/spacecake

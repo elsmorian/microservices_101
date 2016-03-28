@@ -71,6 +71,10 @@ services:
     links:
       - rabbitmq
       - rabbitmq:rabbitmq.cloud66.local
+    environment:
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
+
   bagel:
     build: ./minions/bagel
     stdin_open: true
@@ -78,6 +82,23 @@ services:
     links:
       - rabbitmq
       - rabbitmq:rabbitmq.cloud66.local
+    environment:
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
+  
+  donut:
+    build: ./minions/donut
+    stdin_open: true
+    tty: true
+    links:
+      - rabbitmq
+      - rabbitmq:rabbitmq.cloud66.local
+   # volumes:
+   #   - ${PWD}/minions/donut:/home/app
+    environment:
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
+
   rabbitmq:
     image: rabbitmq:3-management
     ports:

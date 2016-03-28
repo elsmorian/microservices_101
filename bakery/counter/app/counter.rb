@@ -47,8 +47,8 @@ module Counter
 
       desc 'Create a order.'
       params do
-        requires :kind, type: String, desc: 'The sweet goods', values: ['spacecake', 'bagel']
-        requires :flavour, type: String, desc: 'Your favorite sweet flavour', values: ['stawberry', 'cola']
+        requires :kind, type: String, desc: 'The sweet goods', values: ['spacecake', 'bagel', 'donut']
+        requires :flavour, type: String, desc: 'Your favorite sweet flavour', values: ['stawberry', 'cola', 'glitter', 'rum']
         requires :amount, type: Integer, desc: 'Amount of sweet stuff.'
       end
       post do
