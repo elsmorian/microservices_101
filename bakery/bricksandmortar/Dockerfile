@@ -23,9 +23,9 @@ COPY middleman /home/app
 
 
 #cache buster
-ENV CACHEBUSTER 14343167172223
+ENV CACHEBUSTER 0030
 #domain name of the external counter API service
-ENV COUNTER_ADDRESS counter.188.166.151.220.xip.io
+ENV COUNTER_ADDRESS api.microservice101.io
 
 #start middleman as development server
 RUN bundle exec middleman build --verbose
