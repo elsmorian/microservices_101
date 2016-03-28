@@ -18,7 +18,7 @@ services:
     ports:
     - 80:80:443
     traffic_matches:
-    - cms.www.microservice101.io
+    - cms.microservice101.io
   counter:
     env_vars:
       RACK_ENV: production
@@ -36,6 +36,10 @@ services:
   minion_bagel:
     git_url: http://github.com/cloud66-samples/microservices_101.git
     build_root: bakery/minions/bagel
+    git_branch: master
+  minion_donut:
+    git_url: http://github.com/cloud66-samples/microservices_101.git
+    build_root: bakery/minions/donut
     git_branch: master
   worker_chef:
     git_url: http://github.com/cloud66-samples/microservices_101.git
