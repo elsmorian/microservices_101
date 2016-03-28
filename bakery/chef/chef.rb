@@ -9,11 +9,11 @@ conn = Bunny.new host: ENV['RABBITMQ_HOST'] || 'rabbitmq.cloud66.local', user: E
 conn.start
 
 ch   = conn.create_channel
-bagel_queue = ch.queue("bakery.bagel.order", :durable => true)
-bagel_done_queue = ch.queue("bakery.bagel.order.done", :durable => true)
-
-spacecake_queue = ch.queue("bakery.spacecake.order", :durable => true)
 work_queue = ch.queue("bakery.order", :durable => true)
+bagel_queue = ch.queue("bakery.bagel.order", :durable => true)
+spacecake_queue = ch.queue("bakery.spacecake.order", :durable => true)
+donut_queue = ch.queue("bakery.donut.order", :durable => true)
+
 
 ch.prefetch(1)
 sleep_time = 5.0
@@ -24,7 +24,7 @@ logger.formatter = proc do |severity, datetime, progname, msg|
 end
 
 logger.info "--------------------------------"
-logger.info "chef v1.1 ready to rock!"
+logger.info "chef v1.2 ready to rock!"
 logger.info "--------------------------------"
 logger.info "#{ENV['HOSTNAME']}:-- [*] Waiting for orders"
 
@@ -44,13 +44,14 @@ begin
           spacecake_queue.publish(payload, :persistent => true)
         end
       end
+       if task['kind'] == 'donut'
+        task['amount'].times do |count|
+          donut_queue.publish(payload, :persistent => true)
+        end
+      end
       logger.info "#{ENV['HOSTNAME']}:-- [x] Giving orders done"
       ch.ack(delivery_info.delivery_tag)
     end
-  #  bagel_done_queue.subscribe(:manual_ack => true, :block => false) do |delivery_info, properties, payload|
-  #    logger.info "#{ENV['HOSTNAME']}:-- [.] Received 1 bagel"
-  #    ch.ack(delivery_info.delivery_tag)
-  #  end
 rescue Interrupt => _
   conn.close
 end
