@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 var amqp = require('amqplib/callback_api');
-var secs = 2;
+var secs = 10;
 
 console.log("--------------------------------");
-console.log("donut minion v1.0 ready to rock!");
+console.log("donut minion v1.1 ready to rock!");
 console.log("--------------------------------");
 
 var ch_in;
